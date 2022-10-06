@@ -19,27 +19,38 @@ package Metricas1;
 public class OperacionesConPuntos2D {
 
 
-    public static double norma(Punto2D p) {
-        return 0;
+    public static double normaEuclidiana(Punto2D p) { //Distanciia del punto al origen
+        double originDistance = metricaEuclidiana(new Punto2D(), p);
+        return originDistance;
     }
 
 
-    public static double metricaEuclidiana(Punto2D a, Punto2D b) {
-        return 0;
+    public static double metricaEuclidiana(Punto2D a, Punto2D b) { //Distancia entre dos puntos cualquiera
+        double ABdistance = Math.sqrt(Math.pow(a.getX() - b.getX(), 2) + Math.pow(a.getY() - b.getY(), 2));
+        return ABdistance;
     }
 
-
+    //Metrica Manhattan 
     public static double metricaTaxista(Punto2D a, Punto2D b) {
-        return 0;
+        double hypotenuse = metricaEuclidiana(a, b);
+        double aSide = hypotenuse*(Math.sqrt(3)/2);
+        double bSide = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(aSide, 2));
+        double result = aSide + bSide;
+        return result;
     }
 
 
     public static double dotProduct(Punto2D a, Punto2D b) {
-        return 0;
+        double dotProduct = (a.getX()*b.getX()) + (a.getY()*b.getY());
+        return dotProduct;
     }
 
 
-    public double area(Punto2D a, Punto2D b) {
-        return 0;
+    public static double area(Punto2D a, Punto2D b) {
+
+        Punto2D forBase = new Punto2D(b.getX(), a.getY());
+
+        double area = (metricaEuclidiana(a, forBase) * metricaEuclidiana(b, forBase));
+        return area;
     }
 }
